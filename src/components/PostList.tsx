@@ -8,6 +8,7 @@ export interface Post {
   content: string;
   created_at: string;
   image_url: string;
+  avatar_url?: string;
 }
 
 const fetchPosts = async (): Promise<Post[]> => {
@@ -22,7 +23,6 @@ const fetchPosts = async (): Promise<Post[]> => {
 }
 
 const PostList = () => {
-
   const { data, error, isLoading } = useQuery<Post[], Error>({
     queryKey: ["posts"],
     queryFn: fetchPosts
