@@ -19,7 +19,7 @@ const createPost = async (post: PostInput, imageFile: File) => {
 
   const { data, error } = await supabase
     .from("posts")
-    .insert({...post, image_url: publicURLData.publicUrl})
+    .insert({ ...post, image_url: publicURLData.publicUrl })
 
   if (error) throw new Error(error.message)
 
@@ -31,7 +31,7 @@ export const CreatePost = () => {
   const [content, setContent] = useState<string>("")
   const [selectedFile, setSelectedFile] = useState<File | null>(null)
 
-  const { mutate } = useMutation({
+  const { mutate, isPending, isError } = useMutation({
     mutationFn: (data: { post: PostInput; imageFile: File }) => {
       return createPost(data.post, data.imageFile)
     },
@@ -108,11 +108,23 @@ export const CreatePost = () => {
         {/* Submit Button */}
         <button
           type="submit"
-          className="w-full py-2.5 rounded-lg bg-gradient-to-r from-violet-500 to-indigo-500 text-white font-medium shadow-md hover:shadow-lg hover:from-violet-600 hover:to-indigo-600 transition-all duration-200 active:scale-[0.97]"
+          className="w-full py-2.5 rounded-lg bg-gradient-to-r from-violet-500 to-indigo-500 text-white font-medium shadow-md hover:shadow-lg hover:from-violet-600 hover:to-indigo-600 transition-all duration-200 active:scale-[0.97] disabled:opacity-70 disabled:cursor-not-allowed"
         >
-          Create Post
+          {isPending ? (
+            <span className="flex items-center justify-center gap-2">
+              <span className="w-4 h-4 border-2 border-white/40 border-t-white rounded-full animate-spin"></span>
+              Creating...
+            </span>
+          ) : (
+            "Create Post"
+          )}
         </button>
 
+        {isError && (
+          <p className="text-sm text-red-500 mt-2">
+            Error creating post
+          </p>
+        )}
       </div>
     </form>
   )
