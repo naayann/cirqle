@@ -108,7 +108,7 @@ export const CreatePost = () => {
         {/* Submit Button */}
         <button
           type="submit"
-          className="w-full py-2.5 rounded-lg bg-gradient-to-r from-violet-500 to-indigo-500 text-white font-medium shadow-md hover:shadow-lg hover:from-violet-600 hover:to-indigo-600 transition-all duration-200 active:scale-[0.97] disabled:opacity-70 disabled:cursor-not-allowed"
+          className="w-full py-2.5 rounded-lg bg-linear-to-r from-violet-500 to-indigo-500 text-white font-medium shadow-md hover:shadow-lg hover:from-violet-600 hover:to-indigo-600 transition-all duration-200 active:scale-[0.97] disabled:opacity-70 disabled:cursor-not-allowed"
         >
           {isPending ? (
             <span className="flex items-center justify-center gap-2">

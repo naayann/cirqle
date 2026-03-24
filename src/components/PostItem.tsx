@@ -11,7 +11,7 @@ const PostItem = ({ post }: Props) => {
       <div className="border border-neutral-200 bg-white overflow-hidden transition">
 
         {/* Image */}
-        <div className="w-full aspect-[16/11] overflow-hidden bg-neutral-100">
+        <div className="w-full aspect-16/11 overflow-hidden bg-neutral-100">
           <img
             src={post.image_url}
             alt={post.title}

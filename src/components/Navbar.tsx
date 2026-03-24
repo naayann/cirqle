@@ -66,7 +66,7 @@ const Navbar = () => {
                     />
                   )}
 
-                  <span className="text-sm text-neutral-700 max-w-[120px] truncate">
+                  <span className="text-sm text-neutral-700 max-w-30 truncate">
                     {displayName}
                   </span>
 
@@ -81,7 +81,7 @@ const Navbar = () => {
               ) : (
                 <button
                   onClick={signInWithGithub}
-                  className="px-4 py-1.5 rounded-md bg-gradient-to-r from-violet-500 to-indigo-500 text-white shadow-sm hover:shadow-md hover:from-violet-600 hover:to-indigo-600 transition-all duration-200 active:scale-[0.97]"
+                  className="px-4 py-1.5 rounded-md bg-linear-to-r from-violet-500 to-indigo-500 text-white shadow-sm hover:shadow-md hover:from-violet-600 hover:to-indigo-600 transition-all duration-200 active:scale-[0.97]"
                 >
                   Sign in with GitHub
                 </button>
@@ -150,7 +150,7 @@ const Navbar = () => {
                   ) : (
                     <button
                       onClick={signInWithGithub}
-                      className="px-4 py-1.5 w-full rounded-md bg-gradient-to-r from-violet-500 to-indigo-500 text-white text-center shadow-sm hover:from-violet-600 hover:to-indigo-600 transition active:scale-[0.97]"
+                      className="px-4 py-1.5 w-full rounded-md bg-linear-to-r from-violet-500 to-indigo-500 text-white text-center shadow-sm hover:from-violet-600 hover:to-indigo-600 transition active:scale-[0.97]"
                     >
                       Sign in with GitHub
                     </button>
