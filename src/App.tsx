@@ -1,11 +1,20 @@
-import './App.css'
+import { Route, Routes } from 'react-router'
+import Navbar from './components/Navbar'
+import Home from './pages/Home'
+import CreatePostPage from './pages/CreatePostPage'
 
 function App() {
 
   return (
-    <>
-      
-    </>
+    <div>
+      <Navbar />
+      <div>
+        <Routes>
+          <Route path='/' element={<Home/>} />
+          <Route path='/create' element={<CreatePostPage/>} />
+        </Routes>
+      </div>
+    </div>
   )
 }
 
