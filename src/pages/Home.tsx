@@ -2,7 +2,7 @@ import PostList from "../components/PostList"
 
 const Home = () => {
   return (
-    <div className="pt-24 px-6">
+    <div className="md:pt-24 pt-18 px-6">
 
       <div className="max-w-5xl mx-auto">
 
@@ -16,7 +16,7 @@ const Home = () => {
             Discover what others are sharing
           </p>
 
-          <div className="h-px bg-neutral-200 mt-4"></div>
+          <div className="h-px bg-linear-to-r from-neutral-200 to-white mt-4"></div>
         </div>
 
         {/* Feed */}

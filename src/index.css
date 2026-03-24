@@ -1,1 +1,31 @@
 @import "tailwindcss";
+
+@keyframes slideInTop {
+  from {
+    transform: translateY(-100%);
+    opacity: 0.6;
+  }
+  to {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutTop {
+  from {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-120%);
+    opacity: 0.6;
+  }
+}
+
+.nav-enter {
+  animation: slideInTop 0.25s ease forwards;
+}
+
+.nav-exit {
+  animation: slideOutTop 0.2s ease forwards;
+}

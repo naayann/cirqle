@@ -44,7 +44,7 @@ const PostList = () => {
   }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
       {data?.map((post, key) => (
         <PostItem post={post} key={key} />
       ))}
