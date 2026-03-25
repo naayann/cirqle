@@ -29,3 +29,18 @@
 .nav-exit {
   animation: slideOutTop 0.2s ease forwards;
 }
+
+
+@keyframes pop {
+  0%, 100% { 
+    transform: scale(1) rotate(0deg);
+  }
+  50% { 
+    transform: scale(1.1) rotate(-8deg) translateY(-4px);
+  }
+
+}
+
+.vote-pop {
+  animation: pop 0.5s ease;
+}
