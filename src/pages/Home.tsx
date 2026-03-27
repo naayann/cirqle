@@ -6,7 +6,6 @@ const Home = () => {
 
       <div className="max-w-5xl mx-auto">
 
-        {/* Heading Section */}
         <div className="mb-8">
           <h2 className="text-2xl font-semibold tracking-tight text-neutral-900">
             Recent Posts
@@ -19,7 +18,6 @@ const Home = () => {
           <div className="h-px bg-linear-to-r from-neutral-200 to-white mt-4"></div>
         </div>
 
-        {/* Feed */}
         <div className="space-y-6">
           <PostList/>
         </div>
