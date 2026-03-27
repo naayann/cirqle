@@ -1,12 +1,15 @@
 import React, { useState, type ChangeEvent } from "react"
-import { useMutation } from "@tanstack/react-query"
+import { useMutation, useQuery } from "@tanstack/react-query"
 import { supabase } from "../supabase-client";
 import { useAuth } from "../context/AuthContext";
+import { fetchCommunities, type Community } from "./CommunityList";
+import { FiChevronDown } from "react-icons/fi";
 
 interface PostInput {
   title: string;
   content: string;
   avatar_url: string | null
+  community_id?: number | null
 }
 
 const createPost = async (post: PostInput, imageFile: File) => {
@@ -31,9 +34,15 @@ const createPost = async (post: PostInput, imageFile: File) => {
 export const CreatePost = () => {
   const [title, setTitle] = useState<string>("")
   const [content, setContent] = useState<string>("")
+  const [communityId, setCommunityId] = useState<number | null>(null)
   const [selectedFile, setSelectedFile] = useState<File | null>(null)
 
   const { user } = useAuth()
+
+  const { data: communities } = useQuery<Community[], Error>({
+    queryKey: ["communities"],
+    queryFn: fetchCommunities
+  })
 
   const { mutate, isPending, isError } = useMutation({
     mutationFn: (data: { post: PostInput; imageFile: File }) => {
@@ -48,10 +57,16 @@ export const CreatePost = () => {
       post: {
         title,
         content,
-        avatar_url: user?.user_metadata.avatar_url || null
+        avatar_url: user?.user_metadata.avatar_url || null,
+        community_id: communityId
       },
       imageFile: selectedFile
     })
+  }
+
+  const handleCommunityChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value
+    setCommunityId(value ? Number(value) : null)
   }
 
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -61,7 +76,7 @@ export const CreatePost = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="mt-12 px-6">
+    <form onSubmit={handleSubmit} className="mt-12">
       <div className="max-w-2xl mx-auto bg-white/70 backdrop-blur-md border border-neutral-200 rounded-xl shadow-sm p-6 space-y-6">
 
         {/* Title */}
@@ -92,6 +107,30 @@ export const CreatePost = () => {
             className="w-full px-4 py-2.5 rounded-lg border border-neutral-300 bg-white/80 text-sm text-neutral-900 placeholder:text-neutral-400 outline-none resize-none focus:ring-2 focus:ring-indigo-500/40 focus:border-indigo-500 transition"
             placeholder="Share your thoughts..."
           />
+        </div>
+
+        {/* Select Community */}
+        <div className="flex flex-col gap-2">
+          <label className="text-sm font-medium text-neutral-700">
+            Select Community
+          </label>
+
+          <div className="relative">
+            <select
+              id="community"
+              onChange={handleCommunityChange}
+              className="w-full appearance-none px-4 py-2.5 rounded-lg border border-neutral-300 bg-white/80 text-sm text-neutral-900 outline-none focus:ring-2 focus:ring-indigo-500/40 focus:border-indigo-500 transition"
+            >
+              <option value={""}>-- Choose a community --</option>
+              {communities?.map((community, key) => (
+                <option key={key} value={community.id}>
+                  {community.name}
+                </option>
+              ))}
+            </select>
+
+            <FiChevronDown className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-neutral-400 text-[16px]" />
+          </div>
         </div>
 
         {/* Image Upload */}
