@@ -5,7 +5,7 @@ import { useAuth } from '../context/AuthContext'
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false)
-  const { signInWithGithub, signOut, user } = useAuth()
+  const { signInWithGoogle, signOut, user } = useAuth()
 
   const displayName = user?.user_metadata.user_name || user?.email
 
@@ -80,10 +80,10 @@ const Navbar = () => {
                 </div>
               ) : (
                 <button
-                  onClick={signInWithGithub}
+                  onClick={signInWithGoogle}
                   className="px-4 py-1.5 rounded-md bg-linear-to-r from-violet-500 to-indigo-500 text-white shadow-sm hover:shadow-md hover:from-violet-600 hover:to-indigo-600 transition-all duration-200 active:scale-[0.97]"
                 >
-                  Sign in with GitHub
+                  Sign in with Google
                 </button>
               )}
 
@@ -149,10 +149,10 @@ const Navbar = () => {
                     </div>
                   ) : (
                     <button
-                      onClick={signInWithGithub}
+                      onClick={signInWithGoogle}
                       className="px-4 py-1.5 w-full rounded-md bg-linear-to-r from-violet-500 to-indigo-500 text-white text-center shadow-sm hover:from-violet-600 hover:to-indigo-600 transition active:scale-[0.97]"
                     >
-                      Sign in with GitHub
+                      Sign in with Google
                     </button>
                   )}
                 </div>
